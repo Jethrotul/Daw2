@@ -7,44 +7,53 @@ document
 document
     .querySelector('#formResponsable button')
     .addEventListener("click", function (e) { e.preventDefault(); addResponsable(); });
+document
+    .querySelector('#tasques')
+    .addEventListener("click", function (e) {
+        if (e.target.nodeName === 'DIV') {
+            
+        }
+        console.log(e.target.parentNode.id) 
+        console.log(e.target.nodeName) 
 
-let task = [];
-let subtask = []
+    });
 
-let numerador = 0;
+const task = [];
+const subtask = []
+
+let id = 0;
 let tareaSeleccionada;
 
 function addTask() {
-    numerador++
+   
     const tituloTarea = document.querySelector('#tasca').value;
     const prioridadseleccionada = document.querySelector('#prioritats').value;
 
     let prioridad;
     switch (prioridadseleccionada) {
-        case '1': prioridad = "w3-pale-blue tasca"; break;
-        case '2': prioridad = "w3-pale-yellow tasca"; break;
-        case '3': prioridad = "w3-pale-red tasca"; break;
+        case '1': prioridad = "w3-pale-blue"; break;
+        case '2': prioridad = "w3-pale-yellow"; break;
+        case '3': prioridad = "w3-pale-red"; break;
     }
-
+    
+    task.push({id, tituloTarea, prioridad, subtask})
+    
+    console.log(task);
     let tareaHtml = `
     <div class="w3-container w3-quarter">
-    <div class="${prioridad}" id="${numerador}">
-        <h2 class="w3-center">#${numerador} - ${tituloTarea}</h2>
+    <div class="${task[id].prioridad} tasca" id="${task[id].id}">
+        <h2 class="w3-center">#${task[id].id} - ${task[id].tituloTarea}</h2>
         <h4></h4>
             <ul>
                 
             </ul>
-        <h4>Total: <span class="total${numerador}">0</span> h.</h4>
+        <h4>Total: <span class="total${task[id].id}">0</span> h.</h4>
         </div>
     </div>
     <div>`
 
     document.querySelector('#tasques').insertAdjacentHTML('beforeend', tareaHtml);
-    const divTarea = document.getElementById(numerador);
-    divTarea.addEventListener("click", function (e) {
-        //e.preventDefault();
-        tareaSeleccionada = e.currentTarget.id;
-    })
+    id++
 }
 
 function addResponsable() {
