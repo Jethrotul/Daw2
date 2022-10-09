@@ -1,59 +1,79 @@
-document
-    .querySelector('#formTasca button')
-    .addEventListener("click", function (e) { e.preventDefault(); addTask(); });
-document
-    .querySelector('#formSubtasca button')
-    .addEventListener("click", function (e) { e.preventDefault(); addSubTask(); countTime();});
-document
-    .querySelector('#formResponsable button')
-    .addEventListener("click", function (e) { e.preventDefault(); addResponsable(); });
-document
-    .querySelector('#tasques')
-    .addEventListener("click", function (e) {
-        if (e.target.nodeName === 'DIV') {
-            
-        }
-        console.log(e.target.parentNode.id) 
-        console.log(e.target.nodeName) 
+document.querySelector('#formTasca button').addEventListener("click", function (e) { e.preventDefault(); addTasks(); });
+document.querySelector('#formSubtasca button').addEventListener("click", function (e) { e.preventDefault(); addSubTasks(); countTime();});
+document.querySelector('#formResponsable button').addEventListener("click", function (e) { e.preventDefault(); addResponsable(); });
+document.querySelector('#tasques').addEventListener("click", function (e) {
+    if (e.target.nodeName === 'DIV') {tareaSeleccionada= e.target.id}    
+    if (e.target.nodeName === 'H2' || e.target.nodeName === 'H4' || e.target.nodeName === 'UL') {
+        tareaSeleccionada = e.target.parentNode.id
+        console.log("No es LI " + e.target.parentNode.id);
+    }
+    if (e.target.nodeName === 'LI') {
+        console.log(e.target.parentNode.id)
+    }
+});
 
-    });
-
-const task = [];
-const subtask = []
+const tasks = [];
+const subtasks = []
+let tituloTarea;
 
 let id = 0;
 let tareaSeleccionada;
 
-function addTask() {
-   
-    const tituloTarea = document.querySelector('#tasca').value;
+function addTasks() {
+    tituloTarea = document.querySelector('#tasca').value;
     const prioridadseleccionada = document.querySelector('#prioritats').value;
-
     let prioridad;
+    let terminada = false;
     switch (prioridadseleccionada) {
         case '1': prioridad = "w3-pale-blue"; break;
         case '2': prioridad = "w3-pale-yellow"; break;
         case '3': prioridad = "w3-pale-red"; break;
+        default : prioridad = null;
     }
+    // prioridad !== null ||
+    if (prioridad !== null) {
+        if (tasks.length === 0) {
+            tasks.push({id, tituloTarea, prioridad, subtasks, terminada});
+            pintarTarea();
+        }
+        else if  (existeTarea(tituloTarea) == false && tasks.length !== 0) {
+            tasks.push({id, tituloTarea, prioridad, subtasks, terminada})
+            pintarTarea();
+        }
+        else {
+            console.log("Tarea repetida")
+            id--
+        }
+        id++
+    }
+    else {console.log("Falta añadir una prioridad en la tarea")}
     
-    task.push({id, tituloTarea, prioridad, subtask})
+    document.querySelector('#tasca').value = '';
+    console.log(tasks);
+}
+
+function existeTarea(params) {
+    tasks.forEach(tareas => {
+        console.log(tareas);
+        if (tareas.indexOf(params) != 0) {} 
+        else {return true}});
+    return false;
     
-    console.log(task);
+}
+
+function pintarTarea() {
     let tareaHtml = `
-    <div class="w3-container w3-quarter">
-    <div class="${task[id].prioridad} tasca" id="${task[id].id}">
-        <h2 class="w3-center">#${task[id].id} - ${task[id].tituloTarea}</h2>
-        <h4></h4>
-            <ul>
-                
-            </ul>
-        <h4>Total: <span class="total${task[id].id}">0</span> h.</h4>
-        </div>
-    </div>
-    <div>`
+            <div class="w3-container w3-quarter">
+            <div class="${tasks[id].prioridad} tasca" id="${tasks[id].id}">
+                <h2 class="w3-center">#${tasks[id].id} - ${tasks[id].tituloTarea}</h2>
+                <h4></h4>
+                <ul></ul>
+                <h4>Total: <span}">0</span> h.</h4>
+                </div>
+            </div>
+            <div>`
 
     document.querySelector('#tasques').insertAdjacentHTML('beforeend', tareaHtml);
-    id++
 }
 
 function addResponsable() {
@@ -63,7 +83,7 @@ function addResponsable() {
     buscaResponsable.innerText = responsable;
 }
 
-function addSubTask() {
+function addSubTasks() {
     const subTarea = document.querySelector('#subTasca').value
     const subTareaHoras = document.querySelector('#horesPrevistes').value
     const subTareaLi = document.querySelector(`[id="${tareaSeleccionada}"] ul`);
