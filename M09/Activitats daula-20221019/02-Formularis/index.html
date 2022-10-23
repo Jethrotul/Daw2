@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="" method="post">
+      <fieldset>
+        <legend>Dades d’usuar:</legend>
+        <label for="username">Usuari:</label><br />
+        <input type="text" id="username" name="username" required /><br />
+
+        <label for="pwd">Password:</label><br />
+        <input type="password" id="pwd" name="pwd" required /><br />
+
+        <label for="repeatpwd">Repeat Password:</label><br />
+        <input type="text" id="repeatpwd" name="repeatpwd" required /><br />
+
+        <label for="email">Email:</label><br />
+        <input type="email" id="email" name="email" required /><br />
+
+        <label for="repeatemail">Repeat Email:</label><br />
+        <input type="text" id="repeatemail" name="repeatemail" required /><br />
+
+        <label for="phone">Telèfon Fix:</label><br />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+        /><br />
+
+        <label for="mobile">Telèfon Mòbil:</label><br />
+        <input
+          type="tel"
+          id="mobile"
+          name="mobile"
+          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+        /><br />
+
+        <label for="birthday">Data de naixement:</label>
+        <input type="date" id="birthday" name="birthday" />
+        <fieldset>
+          <legend>Sexe</legend>
+          <input type="radio" id="home" name="sexe" value="home" />
+          <label for="home">Home</label><br />
+
+          <input type="radio" id="dona" name="sexe" value="dona" />
+          <label for="dona">Dona</label><br />
+
+          <input
+            type="radio"
+            id="no_determinat"
+            name="sexe"
+            value="no_determinat"
+          />
+          <label for="no_determinat">No Determinat</label><br />
+
+          <input type="radio" id="no_binari" name="sexe" value="no_binari" />
+          <label for="no_binari">No Binari</label><br />
+
+          <input type="radio" id="gay" name="sexe" value="gay" />
+          <label for="gay">Gay</label><br />
+
+          <input type="radio" id="Lesbiana" name="sexe" value="Lesbiana" />
+          <label for="Lesbiana">Lesbiana</label><br />
+        </fieldset>
+        <fieldset>
+          <legend>Interessos</legend>
+          <input
+            type="checkbox"
+            id="video_games"
+            name="video_games"
+            value="VideoGames"
+          />
+          <label for="video_games"> VideoGames</label><br />
+          <input type="checkbox" id="esports" name="esports" value="Esports" />
+          <label for="esports">Esports</label><br />
+          <input type="checkbox" id="llegir" name="llegir" value="Llegir" />
+          <label for="llegir">Llegir</label>
+        </fieldset>
+        <input type="submit" value="Nou Usuari"/>
+      </fieldset>
+      <fieldset>
+    </form>
+    <form action="" method="post">
+        <legend>Dades d’adreça:</legend>
+
+        <label for="via">Tipus Via:</label>
+        <select id="via" name="via">
+          <option value="carrer">Carrer</option>
+          <option value="avinguda">Avinguda</option>
+          <option value="placa">Plaça</option>
+          <option value="cami">Cami</option>
+        </select>
+        <br />
+
+        <label for="adreca1">Línea Adreça 1:</label><br />
+        <input type="text" id="adreca1" name="adreca1" /><br />
+
+        <label for="adreca2">Línea Adreça 2:</label><br />
+        <input type="text" id="adreca2" name="adreca2" /><br>
+
+        <label for="cpostal">Codi Postal:</label><br>
+        <input type="number" id="cpostal" name="cpostal" min="1" max="5"><br>
+
+        <label for="ciutat">Ciutat:</label><br>
+        <input type="text" id="ciutat" name="ciutat"><br>
+
+        <label for="provincia">Provincia:</label><br>
+        <input type="text" id="provincia" name="provincia"><br>
+        
+        <label for="numero">Número:</label><br>
+        <input type="text" id="numero" name="numero"><br>
+
+        <label for="portal">Portal:</label><br>
+        <input type="text" id="portal" name="portal"><br>
+
+        <label for="pis">Pis:</label><br>
+        <input type="text" id="pis" name="pis"><br>
+
+        <label for="porta">Porta:</label><br>
+        <input type="text" id="porta" name="porta"><br>
+
+        <input type="submit" value="+" />
+      </fieldset>
+    </form>
+  </body>
+</html>
