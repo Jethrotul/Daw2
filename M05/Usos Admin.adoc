@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+rectangle Escenari {
+    (manteniment_Autobus) as C1
+    (manteniment_Mecànics) as C2
+    (editar) as C3
+    (esborrar) as C4
+    (inserir) as C5
+    (cercar) as C6
+    (CRUD_manteniment_Mecànics) as C7
+}
+
+:Administratiu:
+
+Administratiu -- (C1)
+Administratiu -- (C2)
+(C2) <-- (C7) : <<extend>>
+(C1) <.. (C3) : <<extend>>
+(C1) <.. (C4) : <<extend>>
+(C1) <.. (C5) : <<extend>>
+(C1) <.. (C6) : <<extend>>
+(C3) ..> (C6) : <<include>>
+(C4) ..> (C6) : <<include>>
+
+
+
+@enduml

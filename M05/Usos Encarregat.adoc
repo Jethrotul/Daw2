@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+rectangle Escenari {
+    (CRUD_manteniment_revisions) as C2
+    (manteniment_revisions) as C3
+    (Llistats_Revisions_Extra) as C4
+    (comprovar_data) as C5
+    (recuperar_info) as C6
+}
+
+
+:EncarregatTaller:
+
+
+EncarregatTaller -- (C3)
+EncarregatTaller -- (C4)
+(C3) <-- (C2) : <<extend>>
+(C4) <-- (C6) : <<include>>
+(C6) <-- (C5) : <<include>>
+
+
+@enduml

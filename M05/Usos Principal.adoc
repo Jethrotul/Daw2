@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+rectangle Escenari {
+    (manteniment_Autobus) as C1
+    (manteniment_Mecànics) as C2
+    (manteniment_revisions) as C3
+    (Llistats_Revisions_Extra) as C4
+}
+
+:Administratiu:
+:EncarregatTaller:
+
+Administratiu --(C1)
+Administratiu --(C2)
+EncarregatTaller -- (C3)
+EncarregatTaller -- (C4)
+
+
+@enduml

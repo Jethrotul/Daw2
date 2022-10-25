@@ -1,0 +1,160 @@
+@startuml
+
+class Usuari {
+  string user
+  string password
+  boolean verify()
+  crearUsuari()
+  modificarUsuari()
+  eliminarUsuari()
+}
+
+class Client {
+  int idClient
+  date data
+  string Nom
+  string cognoms
+  void retornarLlibre()
+  void adquirirLlibre()
+}
+
+class Venedor {
+  int idVenedor
+  date data
+  string Nom
+  string cognoms
+  string empresa
+}
+
+class Llibre {
+  int idLlibre
+  string titol
+  string autor
+  string categoria
+  string vendedor
+  afegirLlibre()
+  treureLlibre()
+  modificarLlibre()
+  array comentaris
+  array opinios
+}
+
+class Comentari {
+  int idComentari
+  date data
+  string comentari
+  int puntuacio
+  afegirComentari()
+  modificarComentari()
+  treureComentari()
+}
+
+class Opinio {
+  int idOpinio
+  date data
+  string opinio
+  boolean validat
+  truncar()
+  validar()
+  afegirOpinio()
+  treureOpinio()
+  modificarOpinio()
+}
+
+
+class LlistaDesitg {
+  string idLlista
+  date data
+  array idLlibre
+  afegirLlibre()
+  treureLlibre()
+}
+
+class Comanda {
+  int idComanda
+  string dataCreacio
+  string dataEnviament
+  string client
+  string estat
+  boolean aceptada
+  boolean enviada
+
+  verificarComanda()
+  cancelarComanda()
+}
+
+class Cataleg {
+  int idCataleg
+  string nomCategoria
+  afegirAlCataleg()
+  modificarCataleg()
+  teureDelCataleg()
+}
+
+class Carret {
+  date data
+  AfegirLlibre()
+  TreureLlibre()
+}
+
+class Quantitat {
+  int idLlibre
+  int quantitat
+  modificarQuantitat()
+}
+
+class MiniCataleg {
+  int idMiniCataleg
+  string nom
+  string categoria
+  string web
+  afegirAlMiniCataleg()
+  modificarMiniCataleg()
+  teureDelMiniCataleg()
+}
+
+class Pagament {
+  int idPagament
+  date data
+  string nom
+  string dades
+  verificarDades()
+  afegirPagament()
+  treurePagament()
+  modificarPagament()
+}
+
+class TCredit {
+  int id tCredit
+  string nom
+  int numero
+  date dataCaducacio
+}
+
+class TBancaria {
+  int id tCredit
+  string nom
+  int iban
+}
+
+
+Usuari <|-- Client
+Usuari <|-- Venedor
+Client "1" *-- "1" Carret
+Carret "1"-- "0..* "Quantitat
+Client "1" *-- "0..*" Comanda 
+Llibre "0..*" -- "0..*" Quantitat
+Quantitat "0..*" -- "1" Comanda
+Cataleg "1" -- "1..* "Llibre
+Cataleg <|-- MiniCataleg
+Pagament "1"--o "1"Comanda
+Pagament <|-- TCredit
+Pagament <|-- TBancaria
+Client "1"-- "1" LlistaDesitg
+Llibre "0..* "-- "1" LlistaDesitg
+Client "1" -- "0..*"Comentari
+Comentari "0..*" -- "0..1" Llibre
+Opinio "0..*" -- "1" Client
+Opinio "0..*" -- "0..1"Llibre
+Venedor "0..*" -- "0..*" Llibre
+@enduml
